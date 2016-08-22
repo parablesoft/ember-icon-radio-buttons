@@ -1,26 +1,28 @@
-# Ember-icon-radio-buttons
-
-This README outlines the details of collaborating on this Ember addon.
+# ember-icon-radio-buttons
+This addon allows you to pass options in to act as radio buttons with font-awesome icons. This is a work in progress.
 
 ## Installation
+ember install ember-icon-radio-buttons
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
 
-## Running
+## Examples
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+### Simple Usage
 
-## Running Tests
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+In your controller
+import Ember from "ember";
+const {Controller} = Ember;
+export default Controller.extend({
+	subject: Ember.Object.extend({
+		package: 1,
+	}),
+	options: [1,2,3],
+});
 
-## Building
+In your template
+{{icon-radio-button-list 
+wrapper-class="col-md-4"
+	modelValue=subject.package
+	options=options}}
 
-* `ember build`
-
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
