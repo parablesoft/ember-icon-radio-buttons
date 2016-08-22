@@ -1,5 +1,6 @@
-{{#each options as |option|}}
-	{{icon-radio-button value=option 
+{{#each mappedOptions as |option|}}
+	{{icon-radio-button value=option.value 
+		displayValue=option.displayValue
 		wrapper-class=wrapper-class
 		icon=icon
 		modelValue=modelValue}}

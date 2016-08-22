@@ -9,6 +9,14 @@ moduleForComponent('icon-radio-button-list', 'Integration | Component | icon rad
 
 
 let options = ["Monthly","Quarterly","Bi-Annually","Annually"];
+
+let advancedOptions = [
+	{value: 1, displayValue: "Monthly"},
+	{value: 2, displayValue: "Quarterly"},
+	{value: 3, displayValue: "Bi-Annually"},
+	{value: 4, displayValue: "Annually"}
+];
+
 let Subject = Ember.Object.extend({
 });
 
@@ -23,13 +31,43 @@ test("it has the proper css class",function(assert){
 	assert.equal(list.length,1);
 });
 
-test("it has the right number of options",function(assert){
+test("it accepts an array for options",function(assert){
 	this.set("options",[1,2,3]);
   this.render(hbs`{{icon-radio-button-list options=options}}`);
 	let checkboxes = this.$().find(".ember-icon-radio-button");
 	assert.equal(checkboxes.length,3);
 });
 
+
+test("it sets the right value for the radio button when an array of string options are is passed in",function(assert){
+	this.set("options",["Monthly","Annually"]);
+  this.render(hbs`{{icon-radio-button-list options=options}}`);
+	let label = this.$().find(".ember-icon-radio-button:first span").text();
+	assert.equal(label,"Monthly");
+});
+
+
+test("it sets the right value for the radio button when an array of integers options are is passed in",function(assert){
+	this.set("options",[1,2]);
+  this.render(hbs`{{icon-radio-button-list options=options}}`);
+	let label = this.$().find(".ember-icon-radio-button:first span").text();
+	assert.equal(label,"1");
+});
+
+
+test("it accepts an array of hashes for options",function(assert){
+	this.set("options",advancedOptions);
+  this.render(hbs`{{icon-radio-button-list options=options}}`);
+	let checkboxes = this.$().find(".ember-icon-radio-button");
+	assert.equal(checkboxes.length,4);
+});
+
+test("it sets the right value for the radio button when a hash is passed",function(assert){
+	this.set("options",advancedOptions);
+  this.render(hbs`{{icon-radio-button-list options=options}}`);
+	let label = this.$().find(".ember-icon-radio-button:first span").text();
+	assert.equal(label,"Monthly");
+});
 
 
 test("it has a selected option based upon the value of the model's property passed in",function(assert){
@@ -62,6 +100,12 @@ test("it wraps all the items with a specified class",function(assert){
 	assert.equal(items.length,4);
 });
 
+test("it sets the default-icon as fa-check-circle",function(assert){
+	this.set('options',options);
+  this.render(hbs`{{icon-radio-button-list options=options}}`);
+	let items = this.$().find("i.fa-check-circle");
+	assert.equal(items.length,4);
+});
 test("it sets the icon for the wrapped-items",function(assert){
 	this.set('options',options);
 	this.set("icon","fa-check-square");

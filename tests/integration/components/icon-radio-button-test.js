@@ -14,7 +14,8 @@ test("it has the proper css class",function(assert){
 test("it has the proper html",function(assert){
 
 	this.set("value","Monthly");
-  this.render(hbs`{{icon-radio-button value=value}}`);
+	this.set('displayValue',"Monthly");
+  this.render(hbs`{{icon-radio-button displayValue=displayValue value=value}}`);
 	let rb = this.$(".ember-icon-radio-button a").html();
 	let expected = '<i class="ember-icon-radio-button-icon fa fa-check-circle"></i> <span class="ember-icon-radio-button-label">Monthly</span>';
 	assert.equal(rb.trim(),expected);
