@@ -1,0 +1,9 @@
+.ember-icon-radio-button a i{
+	color: #ccc;
+}
+.ember-icon-radio-button.checked a i{
+	color:red;
+}
+.ember-icon-radio-button a{
+	text-decoration: none;
+}

@@ -1,0 +1,1 @@
+export { default } from 'ember-icon-radio-buttons/components/icon-radio-button-list';
