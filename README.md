@@ -4,13 +4,10 @@ This addon allows you to pass options in to act as radio buttons with font-aweso
 ## Installation
 ember install ember-icon-radio-buttons
 
-
 ## Examples
-
 ### Simple Usage
-
-
-In your controller
+**In your controller:**
+```javascript
 import Ember from "ember";
 const {Controller} = Ember;
 export default Controller.extend({
@@ -19,10 +16,8 @@ export default Controller.extend({
 	}),
 	options: [1,2,3],
 });
-
-In your template
-{{icon-radio-button-list 
-wrapper-class="col-md-4"
-	modelValue=subject.package
-	options=options}}
-
+```
+**In your template:**
+```handlebars
+{{icon-radio-button-list modelValue=subject.package options=options}}
+```
