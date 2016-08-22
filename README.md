@@ -9,8 +9,7 @@ ember install ember-icon-radio-buttons
 **In your controller:**
 ```javascript
 import Ember from "ember";
-const {Controller} = Ember;
-export default Controller.extend({
+export default Ember.Controller.extend({
 	subject: Ember.Object.extend({
 		package: 1,
 	}),
