@@ -1,12 +1,11 @@
 import Ember from "ember";
-const {Controller} = Ember;
+const {Controller,computed} = Ember;
+const {alias} = computed;
+
 export default Controller.extend({
-	subject: Ember.Object.extend({
-		package: 1,
-	}),
-	options: [1,2,3],
+	payment: alias("model"),
 	optionsAdvanced: [
-		{value: "1", displayValue: "1"},
-		{value: "2", displayValue: "2"}
+		{value: "1", displayValue: "$1"},
+		{value: "2", displayValue: "$2"}
 	]
 });

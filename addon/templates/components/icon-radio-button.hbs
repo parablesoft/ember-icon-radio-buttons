@@ -1,1 +1,12 @@
-<a {{action "selectValue"}} href="#"><i class="ember-icon-radio-button-icon fa {{icon}}"></i> <span class="ember-icon-radio-button-label">{{displayValue}}</span></a>
+<a {{action "selectValue"}} href="#"><i class="ember-icon-radio-button-icon fa {{icon}}"></i> {{#unless isOther}}<span class="ember-icon-radio-button-label">{{displayValue}}</span>{{/unless}}
+</a>
+
+{{#if isOther}}
+{{#if other-label}}
+	<label class="ember-icon-radio-button-other-label">
+		{{other-label}}
+	</label>
+{{/if}}
+{{input value=customValue key-up="selectValue" class=otherInputClasses}}
+{{/if}}
+

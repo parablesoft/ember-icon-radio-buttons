@@ -3,5 +3,17 @@
 		displayValue=option.displayValue
 		wrapper-class=wrapper-class
 		icon=icon
-		modelValue=modelValue}}
+		modelValue=modelValue
+		isStandardOptionSelected=isStandardOptionSelected
+		}}
 {{/each}}
+
+{{#if allow-other}}
+	{{icon-radio-button 
+	other-label=other-label
+	other-class=other-class
+	isStandardOptionSelected=isStandardOptionSelected
+	modelValue=modelValue
+	isOther=true}}
+{{/if}}
+

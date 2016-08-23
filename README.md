@@ -7,6 +7,7 @@ ember install ember-icon-radio-buttons
 ## Examples
 ### Simple Usage
 **In your controller:**
+
 ```javascript
 import Ember from "ember";
 export default Ember.Controller.extend({
@@ -16,7 +17,12 @@ export default Ember.Controller.extend({
 	options: [1,2,3],
 });
 ```
+
+
 **In your template:**
+
 ```handlebars
 {{icon-radio-button-list modelValue=subject.package options=options}}
 ```
+
+### Advanced Usage

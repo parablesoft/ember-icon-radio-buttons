@@ -1,10 +1,16 @@
-
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+
 
 moduleForComponent('icon-radio-button', 'Integration | Component | icon radio button', {
   integration: true
 });
+
+
+let item = Ember.Object.create({
+	amount: 1,
+});
+
 
 test("it has the proper css class",function(assert){
   this.render(hbs`{{icon-radio-button}}`);
@@ -44,4 +50,51 @@ test("it allows for a different icon to be configured",function(assert){
   this.render(hbs`{{icon-radio-button icon=icon}}`);
 	let icon = this.$().find("i.fa-check-square");
 	assert.equal(icon.length,1);
+});
+
+
+
+// const store 
+test("allows the user to enter another value",function(assert){
+	this.set("model",item);
+	this.set("field","amount");
+  this.render(hbs`{{icon-radio-button-list model=model field=field allow-other=true}}`);
+	this.$().find(".ember-icon-radio-button a").click();
+	let otherTextField = this.$().find(".ember-icon-radio-button input");
+	otherTextField.val("8");
+	otherTextField.keyup();
+	assert.equal(item.get("amount"),8);
+});
+
+test("sets other to checked when the input box is clicked",function(assert){
+	this.set("model",item);
+	this.set("field","amount");
+  this.render(hbs`{{icon-radio-button-list model=model field=field allow-other=true}}`);
+	this.$().find(".ember-icon-radio-button input").click();
+	let checked = this.$().find(".ember-icon-radio-button.checked");
+	assert.equal(checked.length,1);
+});
+
+// test("focuses the input box when other is clicked",function(assert){
+// 	this.set("model",item);
+// 	this.set("field","amount");
+//   this.render(hbs`{{icon-radio-button-list model=model field=field allow-other=true}}`);
+// 	this.$().find(".ember-icon-radio-button").click();
+// 	// this.$().find(".ember-icon-radio-button input").focusIn();
+// 	let focused = this.$().find("input").is(":focus");
+// 	// console.log(this.$().find("input"));
+// 	// console.log(focused);
+// 	assert.equal(focused,1);
+// });
+
+test("sets a label for other",function(assert){
+	this.render(hbs`{{icon-radio-button-list allow-other=true other-label="Other"}}`);
+	let label = this.$().find(".ember-icon-radio-button-other-label");
+	assert.equal(label.length,1);
+});
+
+test("sets a class for the other text field",function(assert){
+	this.render(hbs`{{icon-radio-button-list other-class="form-control" allow-other=true other-label="Other"}}`);
+	let input = this.$().find("input.form-control");
+	assert.equal(input.length,1);
 });
