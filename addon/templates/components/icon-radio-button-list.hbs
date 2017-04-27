@@ -4,6 +4,7 @@
 		wrapper-class=wrapper-class
 		icon=icon
 		modelValue=modelValue
+		onSetValue=(action "setValue")
 		isStandardOptionSelected=isStandardOptionSelected
 		}}
 {{/each}}
@@ -12,6 +13,7 @@
 	{{icon-radio-button 
 	other-label=other-label
 	other-class=other-class
+	onSetValue=(action "setValue")
 	isStandardOptionSelected=isStandardOptionSelected
 	modelValue=modelValue
 	isOther=true}}
