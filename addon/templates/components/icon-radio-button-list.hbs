@@ -1,21 +1,23 @@
 {{#each mappedOptions as |option|}}
-	{{icon-radio-button value=option.value 
-		displayValue=option.displayValue
-		wrapper-class=wrapper-class
-		icon=icon
-		modelValue=modelValue
-		onSetValue=(action "setValue")
-		isStandardOptionSelected=isStandardOptionSelected
-		}}
+  {{icon-radio-button 
+    value=option.value 
+    displayValue=option.displayValue
+    wrapper-class=wrapper-class
+    icon=icon
+    modelValue=modelValue
+    onSetValue=(action "setValue")
+    isStandardOptionSelected=isStandardOptionSelected
+  }}
 {{/each}}
 
 {{#if allow-other}}
-	{{icon-radio-button 
-	other-label=other-label
-	other-class=other-class
-	onSetValue=(action "setValue")
-	isStandardOptionSelected=isStandardOptionSelected
-	modelValue=modelValue
-	isOther=true}}
+  {{icon-radio-button 
+    other-label=other-label
+    other-class=other-class
+    onSetValue=(action "setValue")
+    isStandardOptionSelected=isStandardOptionSelected
+    modelValue=modelValue
+    isOther=true
+  }}
 {{/if}}
 

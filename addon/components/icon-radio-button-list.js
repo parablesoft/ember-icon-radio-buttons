@@ -2,6 +2,7 @@ import Ember from 'ember';
 import layout from '../templates/components/icon-radio-button-list';
 
 const {get,computed,Component} = Ember;
+const displayValueRegex = /^\[(.*)\]$/gm;
 
 export default Component.extend({
   init() {
@@ -13,22 +14,41 @@ export default Component.extend({
   options:[],
   classNames: ["ember-icon-radio-buttons"],
   icon: "fa-check-circle",
+  parseOption: function(item) {
+    
+
+    try{
+      let json = JSON.parse(item)
+      if(typeof(json) === "object")
+        return json
+      else
+        return {value: item, displayValue: item}
+ 
+    }
+    catch(e){
+      return {value: item, displayValue: item}
+    }
+  },
   actions:{
     setValue(){
       if(this.attrs.onSetValue!=undefined){
-	this.attrs.onSetValue(this.get("modelValue"));
+        this.attrs.onSetValue(this.get("modelValue"));
       }
     }
   },
   mappedOptions: computed("options",function(){
     let options = get(this,"options");
     let result = Ember.A();
-    options.map(function(item){
-      if(typeof item === "string" || typeof item === "number"){
-	result.pushObject({value: item, displayValue: item});
+    
+    options.map((item) => {
+      if(typeof item === "string"){
+        result.pushObject(this.parseOption(item))
+      }
+      else if(typeof item === "number"){
+        result.pushObject({value: item, displayValue: item});
       }
       else{
-	result.pushObject(item);
+        result.pushObject(item);
       }
     });
     return result;
