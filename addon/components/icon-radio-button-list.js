@@ -19,8 +19,9 @@ export default Component.extend({
 
     try{
       let json = JSON.parse(item)
-      if(typeof(json) === "object")
+      if(typeof(json) === "object"){
         return json
+      }
       else
         return {value: item, displayValue: item}
  

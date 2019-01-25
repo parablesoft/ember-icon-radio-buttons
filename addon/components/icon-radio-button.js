@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/icon-radio-button';
-
+import _isEqual from 'lodash/isEqual';
 const {Component,computed,set,isPresent,get,$} = Ember;
 const {alias,empty,notEmpty,or,and,not,equal} = computed;
 
@@ -27,7 +27,11 @@ export default Component.extend({
     return result;
   }),
   sameAsModelValue: computed("modelValue","value",function(){
-    return get(this,"modelValue") === get(this,"value");
+    let {value,modelValue} = this.getProperties("value","modelValue")
+    if(typeof(value) === "object")
+      return _isEqual(value,modelValue)
+    else
+      return get(this,"modelValue") === get(this,"value");
   }),
   isStandardOptionNotSelected: not("isStandardOptionSelected"),
   isCustomChecked: and("isStandardOptionNotSelected","hasBeenChecked"),
@@ -45,7 +49,7 @@ export default Component.extend({
   setValue(){
     if(get(this,"isOther")){
       set(this,"hasBeenChecked",true),
-      set(this,"modelValue",get(this,"customValue"));
+        set(this,"modelValue",get(this,"customValue"));
       this.$("input").focus();
     }
     else{
