@@ -1,6 +1,6 @@
 {
   "name": "ember-icon-radio-buttons",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "ember-cli addon that uses font-awesome for radio buttons",
   "directories": {
     "doc": "doc",
@@ -34,7 +34,6 @@
     "ember-data": "2.12.2",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
-    "ember-font-awesome": "2.1.1",
     "ember-inflector": "1.9.6",
     "ember-load-initializers": "^0.5.1",
     "ember-lodash": "4.19.4",
